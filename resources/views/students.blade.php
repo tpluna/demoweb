@@ -1,11 +1,11 @@
 <x-layout>
 
     <x-slot:title>
-        Home
+        Students
     </x-slot:title>
 
     <x-slot:heading>
-        Home Page
+        Students
     </x-slot:heading>
 
 </x-layout>

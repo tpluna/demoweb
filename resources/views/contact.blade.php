@@ -1,11 +1,11 @@
 <x-layout>
 
     <x-slot:title>
-        Home
+        Contact us
     </x-slot:title>
 
     <x-slot:heading>
-        Home Page
+        Contact us
     </x-slot:heading>
 
 </x-layout>
