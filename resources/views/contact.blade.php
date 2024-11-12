@@ -1,7 +1,7 @@
 <x-layout>
 
     <x-slot:heading>
-        Contact us
+        Contactsssssssssssss us
     </x-slot:heading>
 
 </x-layout>
