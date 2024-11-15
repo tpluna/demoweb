@@ -1,9 +1,13 @@
 <x-layout>
 
     <x-slot:heading>
-        Student Profile
+        Student's Profile
     </x-slot:heading>
 
-    <h1> {{ $student['firstname'] }} </h1>
+    <h1>
+        {{ 
+            $student['firstname']
+        }}
+    </h1>
 
 </x-layout>
