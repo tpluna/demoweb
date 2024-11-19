@@ -1,47 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Models\Students;
 
 Route::get('/', function () {
+
+    $students = Students::all();
+
+    // dd($students);
+
     return view('home');
 });
-
-// Route::get('/students', function () {
-//     return view('students', [
-//         'greetings' => 'hello',
-//         'students' => [
-//             [
-//                 'firstname' => 'bongbong',
-//                 'lastname'=> 'duterte'
-//             ],
-//             [
-//                 'firstname' => 'sara',
-//                 'lastname'=> 'robredo'
-//             ]
-//         ]
-//     ]);
-// });
 
 Route::get('/students', function () {
     return view('students', [
 
-        'students' => [
-            [
-                'id' => '01',
-                'firstname' => 'bongbong',
-                'lastname' => 'duterte'
-            ],
-            [
-                'id' => '02',
-                'firstname' => 'sarah',
-                'lastname' => 'robredo'
-            ],
-            [
-                'id' => '03 ',
-                'firstname' => 'bong',
-                'lastname' => 'go'
-            ]
-        ]
+        'students' => Students::all()
     ]);
 });
 
@@ -51,25 +25,7 @@ Route::get('/contact', function () {
 
 Route::get('/profile/{id}', function ($id) {
 
-    $students = [
-        [
-            'id' => '01',
-            'firstname' => 'bongbong',
-            'lastname' => 'duterte'
-        ],
-        [
-            'id' => '02',
-            'firstname' => 'sarah',
-            'lastname' => 'robredo'
-        ],
-        [
-            'id' => '03 ',
-            'firstname' => 'bong',
-            'lastname' => 'go'
-        ]
-    ];
-
-    $student = Arr::first($students, fn($student) => $student['id'] == $id);
+    $student = Arr::first(Students::all(), fn($student) => $student['id'] == $id);
 
     return view('profile', [
         'student' => $student
