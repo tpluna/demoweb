@@ -4,16 +4,13 @@
         Students
     </x-slot:heading>
 
-    <h1> {{ $greetings }} </h1>
-
     @foreach ($students as $student)
-
         <ul>
             <li>
-                <a href="" class="text-blue-500 hover:underline">{{ $student['lastname'] }}, {{ $student['firstname']}}</a>
+                <a href="/profile/{{ $student['id'] }}" class="text-blue-500 hover:underline">{{ $student['lastname'] }},
+                    {{ $student['firstname'] }}</a>
             </li>
         </ul>
-        
     @endforeach
 
 

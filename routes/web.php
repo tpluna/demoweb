@@ -24,21 +24,22 @@ Route::get('/', function () {
 
 Route::get('/students', function () {
     return view('students', [
-        
-        'greetings' => 'hello',
 
         'students' => [
             [
-                'firstname'=> 'bongbong',
-                'lastname'=> 'duterte'
+                'id' => '01',
+                'firstname' => 'bongbong',
+                'lastname' => 'duterte'
             ],
             [
-                'firstname'=> 'sarah',
-                'lastname'=> 'robredo'
+                'id' => '02',
+                'firstname' => 'sarah',
+                'lastname' => 'robredo'
             ],
             [
-                'firstname'=> 'bong',
-                'lastname'=> 'go'
+                'id' => '03 ',
+                'firstname' => 'bong',
+                'lastname' => 'go'
             ]
         ]
     ]);
@@ -48,23 +49,30 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-// Route::get('/profile/{id}', function ($id) {
+Route::get('/profile/{id}', function ($id) {
 
-//             $students = [
-//             [   
-//                 'id' => '1',
-//                 'firstname' => 'bongbong',
-//                 'lastname'=> 'duterte'
-//             ],
-//             [
-//                 'id' => '2',
-//                 'firstname' => 'sara',
-//                 'lastname'=> 'robredo'
-//             ]
-//             ];
+    $students = [
+        [
+            'id' => '01',
+            'firstname' => 'bongbong',
+            'lastname' => 'duterte'
+        ],
+        [
+            'id' => '02',
+            'firstname' => 'sarah',
+            'lastname' => 'robredo'
+        ],
+        [
+            'id' => '03 ',
+            'firstname' => 'bong',
+            'lastname' => 'go'
+        ]
+    ];
 
-//             $student = Arr::first($students, fn($student) => $student['id'] == $id);
+    $student = Arr::first($students, fn($student) => $student['id'] == $id);
 
+    return view('profile', [
+        'student' => $student
+    ]);
 
-//     return view('profile', ['student' => $student]);
-// });
+});
