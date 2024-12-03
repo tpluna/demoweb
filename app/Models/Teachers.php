@@ -11,4 +11,6 @@ class Teachers extends Model
     use HasFactory;
 
     protected $table = 'teachers';
+
+    protected $guarded = [];
 }

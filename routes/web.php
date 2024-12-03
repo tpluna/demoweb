@@ -39,14 +39,32 @@ Route::get('/contact', function () {
 
 Route::get('/teachers', function () {
     return view('teachers', [
-        'teachers' => Teachers::paginate(5)
+        'teachers' => Teachers::latest()->paginate(5)
     ]);
 });
+
+Route::post('/teachers', function () {
+
+    Teachers::create([
+        'firstname' => request('firstname'),
+        'lastname' => request('lastname'),
+        'email' => request('email'),
+        'position' => request('position')
+    ]);
+
+    return redirect('teachers');
+
+});
+
+Route::get('/teachers/create', function () {
+    return view('createTeacher');
+});
+
 
 Route::get('/teacher/{id}', function ($id) {
 
     $teachers = Teachers::all();
-    
+
     $teacher = Arr::first($teachers, fn($teacher) => $teacher['id'] == $id);
 
     return view('teacher', [
