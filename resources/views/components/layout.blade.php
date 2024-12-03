@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title> {{ $heading }} </title>
-    {{-- <script src="https://cdn.tailwindcss.com"></script> --}}
-    @vite('resources/css/app.css')
+    <script src="https://cdn.tailwindcss.com"></script>
+    {{-- @vite('resources/css/app.css') --}}
 </head>
 
 <body>
@@ -37,6 +37,8 @@
                                     aria-current="page">Home</a>
                                 <a href="/students"
                                     class="{{ request()->is('students') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md  px-3 py-2 text-sm font-medium">Students</a>
+                                <a href="/teachers"
+                                    class="{{ request()->is('teachers') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md  px-3 py-2 text-sm font-medium">Teachers</a>
                                 <a href="/contact"
                                     class="{{ request()->is('contact') ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-gray-700 hover:text-white' }} rounded-md  px-3 py-2 text-sm font-medium">Contact
                                     us</a>

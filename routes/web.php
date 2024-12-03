@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
+use App\Models\Students;
+use App\Models\Teachers;
+
 
 Route::get('/', function () {
     return view('home');
@@ -9,67 +12,24 @@ Route::get('/', function () {
 
 Route::get('/profile/{id}', function ($id) {
 
-    $students = [
-        [
-            'id' => '01',
-            'firstname'=> 'bongbong',
-            'lastname'=> 'duterte'
-        ],
-        [
-            'id' => '02',
-            'firstname'=> 'sarah',
-            'lastname'=> 'robredo'
-        ],
-        [
-            'id' => '03',
-            'firstname'=> 'bong',
-            'lastname'=> 'go'
-        ]
-        ];
+    $students = Students::all();
 
     $student = Arr::first($students, fn($student) => $student['id'] == $id);
+
+    if (!$student) {
+        return abort(404, 'wara yaon siya');
+    }
 
     return view('profile', [
         'student' => $student
     ]);
 });
 
-// Route::get('/students', function () {
-//     return view('students', [
-//         'greetings' => 'hello',
-//         'students' => [
-//             [
-//                 'firstname' => 'bongbong',
-//                 'lastname'=> 'duterte'
-//             ],
-//             [
-//                 'firstname' => 'sara',
-//                 'lastname'=> 'robredo'
-//             ]
-//         ]
-//     ]);
-// });
-
 Route::get('/students', function () {
     return view('students', [
 
-        'students' => [
-            [
-                'id' => '01',
-                'firstname'=> 'bongbong',
-                'lastname'=> 'duterte'
-            ],
-            [
-                'id' => '02',
-                'firstname'=> 'sarah',
-                'lastname'=> 'robredo'
-            ],
-            [
-                'id' => '03',
-                'firstname'=> 'bong',
-                'lastname'=> 'go'
-            ]
-        ]
+        'students' => Students::all()
+
     ]);
 });
 
@@ -77,23 +37,20 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-// Route::get('/profile/{id}', function ($id) {
+Route::get('/teachers', function () {
+    return view('teachers', [
+        'teachers' => Teachers::paginate(5)
+    ]);
+});
 
-//             $students = [
-//             [   
-//                 'id' => '1',
-//                 'firstname' => 'bongbong',
-//                 'lastname'=> 'duterte'
-//             ],
-//             [
-//                 'id' => '2',
-//                 'firstname' => 'sara',
-//                 'lastname'=> 'robredo'
-//             ]
-//             ];
+Route::get('/teacher/{id}', function ($id) {
 
-//             $student = Arr::first($students, fn($student) => $student['id'] == $id);
+    $teachers = Teachers::all();
+    
+    $teacher = Arr::first($teachers, fn($teacher) => $teacher['id'] == $id);
 
+    return view('teacher', [
+        'teacher' => $teacher
+    ]);
+});
 
-//     return view('profile', ['student' => $student]);
-// });
