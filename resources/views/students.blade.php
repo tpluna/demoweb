@@ -14,7 +14,7 @@
                         alt="">
                     <div class="min-w-0 flex-auto">
                         <p class="text-sm/6 font-semibold text-gray-900"> {{ $student['lastname'] }}, {{ $student['firstname'] }} </p>
-                        <p class="mt-1 truncate text-xs/5 text-gray-500">leslie.alexander@example.com</p>
+                        <p class="mt-1 truncate text-xs/5 text-gray-500">{{ $student['email'] }}</p>
                     </div>
                 </div>
                 <div class="hidden shrink-0 sm:flex sm:flex-col sm:items-end">
@@ -26,6 +26,12 @@
         </ul>
     @endforeach
 
+    {{ $students->links() }}
+
+    <br>
+
+    <a href="/createstudent" class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register a Student</a>
+    
 
     {{-- @foreach ($students as $student)
         <ul>

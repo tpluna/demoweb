@@ -24,6 +24,6 @@ class DatabaseSeeder extends Seeder
 
         Teachers::factory(50)->create();
 
-        Students::factory(50)->create();
+        Students::factory(1000)->create();
     }
 }

@@ -18,7 +18,8 @@ class StudentsFactory extends Factory
     {
         return [
             'firstname' => fake()->firstName(),
-            'lastname' => fake()->lastName()
+            'lastname' => fake()->lastName(),
+            'email' => fake()->email()
         ];
     }
 }

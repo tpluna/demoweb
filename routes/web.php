@@ -28,10 +28,28 @@ Route::get('/profile/{id}', function ($id) {
 Route::get('/students', function () {
     return view('students', [
 
-        'students' => Students::all()
+        'students' => Students::latest()->paginate(4)
 
     ]);
 });
+
+Route::post('/students', function () {
+
+    Students::create([
+        'firstname' => request('firstname'),
+        'lastname' => request('lastname'),
+        'email' => request('email')
+    ]);
+
+    return redirect('students');
+
+});
+
+Route::get('/createstudent', function () {
+
+    return view('createstudent');
+ 
+ });
 
 Route::get('/contact', function () {
     return view('contact');
@@ -39,7 +57,7 @@ Route::get('/contact', function () {
 
 Route::get('/teachers', function () {
     return view('teachers', [
-        'teachers' => Teachers::latest()->paginate(5)
+        'teachers' => Teachers::latest()->simplePaginate(10)
     ]);
 });
 

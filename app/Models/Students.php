@@ -12,4 +12,6 @@ class Students extends Model
     use HasFactory;
     protected $table = 'students';
 
+    protected $guarded = [];
+
 }
