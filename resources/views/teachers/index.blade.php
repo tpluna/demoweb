@@ -11,7 +11,7 @@
                 <div class="flex min-w-0 gap-x-4">
                     <img class="size-12 flex-none rounded-full bg-gray-50" src="{{ URL('img/payaglogo.png') }}"
                         alt="">
-                    <a href="/teacher/{{ $teacher['id'] }}">
+                    <a href="/teachers/{{ $teacher->id }}">
                         <div class="min-w-0 flex-auto">
                             <p class="text-sm/6 font-semibold text-gray-900">{{ $teacher['lastname'] }},
                                 {{ $teacher['firstname'] }}</p>
@@ -31,7 +31,7 @@
 
     <br>
 
-    <a href="teachers/create"
+    <a href="/teachers/create"
         class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Register
         a teacher</a>
 

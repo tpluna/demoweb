@@ -3,17 +3,13 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Arr;
 use App\Models\Students;
-use App\Models\Teachers;
+use App\Models\Teacher;
+use App\Http\Controllers\TeacherController;
 
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::view('/', 'home');
 
-Route::get('/contact', function () {
-    return view('contact');
-});
-
+Route::view('/contact', 'contact');
 
 //ShowStudentProfile
 Route::get('/profile/{id}', function ($id) {
@@ -58,84 +54,8 @@ Route::get('/createstudent', function () {
 
 });
 
-//ShowTeachers
+Route::resource('teachers', TeacherController::class);
 
-Route::get('/teachers', function () {
-    return view('teachers', [
-        'teachers' => Teachers::latest()->simplePaginate(10)
-    ]);
-});
-
-
-Route::get('/teacher/{id}', function ($id) {
-
-    $teachers = Teachers::all();
-
-    $teacher = Arr::first($teachers, fn($teacher) => $teacher['id'] == $id);
-
-    return view('teacher', [
-        'teacher' => $teacher
-    ]);
-});
-
-
-//CreateTeacher
-Route::post('/teachers', function () {
-
-    request()->validate([
-        'firstname' => 'required',
-        'lastname' => 'required',
-        'email' => 'required|email',
-        'position' => 'required'
-    ]);
-
-    Teachers::create([
-        'firstname' => request('firstname'),
-        'lastname' => request('lastname'),
-        'email' => request('email'),
-        'position' => request('position')
-    ]);
-
-    return redirect('teachers');
-
-});
-
-Route::get('/teachers/create', function () {
-    return view('createTeacher');
-});
-
-//Update Teacher Profile
-Route::get('/teacher/{id}/edit', function ($id) {
-
-    $teachers = Teachers::all();
-
-    $teacher = Arr::first($teachers, fn($teacher) => $teacher['id'] == $id);
-
-    return view('updateteacher', [
-        'teacher' => $teacher
-    ]);
-});
-
-Route::patch('/teacher/{id}', function ($id) {
-
-    $teacher = Teachers::findOrFail($id);
-
-    $teacher->update([
-        'firstname' => request('firstname'),
-        'lastname' => request('lastname'),
-        'email' => request('email'),
-        'position' => request('position')
-    ]);
-
-    return redirect('/teacher/' . $teacher->id);
-});
-
-Route::delete('/teacher/{id}', function ($id) {
-
-    Teachers::findOrFail($id)->delete();
-
-    return redirect('/teachers');
-});
 
 
 

@@ -4,7 +4,7 @@
         Update Profile
     </x-slot:heading>
 
-    <form method="POST" action="/teacher/{{ $teacher->id }}">
+    <form method="POST" action="/teachers/{{ $teacher->id }}">
         @csrf
         @method('PATCH')
 
